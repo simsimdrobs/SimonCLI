@@ -4,3 +4,5 @@
 
 appsettings.*
 launchSettings.json
+
+*.db
