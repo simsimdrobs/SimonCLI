@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 namespace SimonCLI.Infra.Repositories;
 internal class UsersRepository : IUsersRepository
 {
-    private readonly SqliteConnection _connection;
+	private readonly SqliteConnection _connection;
 
-    public UsersRepository(SqliteConnection connection)
-    {
-        _connection = connection;
-    }
+	public UsersRepository(DbConnectionService service)
+	{
+		_connection = service.CreateConnection();
+	}
 
     public async Task<List<User>> GetAsync()
     {
