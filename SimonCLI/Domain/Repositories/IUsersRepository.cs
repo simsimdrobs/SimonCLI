@@ -6,6 +6,6 @@ namespace SimonCLI.Domain.Repositories;
 
 public interface IUsersRepository
 {
-    Task<List<User>> GetAsync();
-    Task<User> CreateAsync(User user);
+	Task<List<User>> GetAsync();
+	Task<User> CreateAsync(User user);
 }

@@ -16,25 +16,25 @@ internal class UsersRepository : IUsersRepository
 		_connection = service.CreateConnection();
 	}
 
-    public async Task<List<User>> GetAsync()
-    {
-        var query = "SELECT * FROM USERS";
-        return (await _connection.QueryAsync<User>(query)).ToList() ?? [];
-    }
+	public async Task<List<User>> GetAsync()
+	{
+		var query = "SELECT * FROM USERS";
+		return (await _connection.QueryAsync<User>(query)).ToList() ?? [];
+	}
 
-    public async Task<User> CreateAsync(User user)
-    {
-        SqliteCommand cmd = _connection.CreateCommand();
+	public async Task<User> CreateAsync(User user)
+	{
+		SqliteCommand cmd = _connection.CreateCommand();
 
-        // Set the command text (INSERT statement)
-        cmd.CommandText = $"INSERT INTO Users (FirstName, LastName) VALUES (@firstName, @lastName)";
+		// Set the command text (INSERT statement)
+		cmd.CommandText = $"INSERT INTO Users (FirstName, LastName) VALUES (@firstName, @lastName)";
 
-        // Add parameters
-        cmd.Parameters.AddWithValue("@firstName", user.FirstName);
-        cmd.Parameters.AddWithValue("@lastName", user.LastName);
+		// Add parameters
+		cmd.Parameters.AddWithValue("@firstName", user.FirstName);
+		cmd.Parameters.AddWithValue("@lastName", user.LastName);
 
-        await cmd.ExecuteNonQueryAsync();
+		await cmd.ExecuteNonQueryAsync();
 
-        return user;
-    }
+		return user;
+	}
 }
